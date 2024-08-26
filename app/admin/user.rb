@@ -69,4 +69,15 @@ ActiveAdmin.register User do
                  "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
     end
   end
+
+  controller do
+    def create
+      params[:user][:added_by_id] = current_admin_user.id
+      super
+    end
+
+    def scoped_collection
+      super.where(added_by_id: current_admin_user.id)
+    end
+  end
 end
