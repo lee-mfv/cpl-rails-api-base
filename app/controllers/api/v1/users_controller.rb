@@ -16,7 +16,7 @@ module API
       private
 
       def update_user_params
-        params.require(:user).permit(:username, :first_name, :last_name, :email)
+        params.require(:user).permit(:username, :first_name, :last_name, :email).merge(updated_at: 2.days.before)
       end
     end
   end

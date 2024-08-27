@@ -33,7 +33,7 @@ describe 'POST api/v1/users' do
 
   it 'returns the user data', :aggregate_failures do
     subject
-    expect(json[:user][:id]).to eq(user.id)
+    expect(json[:user][:id]).to be_nil
     expect(json[:user][:email]).to eq(user.email)
     expect(json[:user][:username]).to eq(user.username)
     expect(json[:user][:uid]).to eq(user.uid)

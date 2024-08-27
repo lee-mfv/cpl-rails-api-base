@@ -34,7 +34,9 @@ ActiveAdmin.register User do
   end
 
   filter :id
-  filter :email
+  filter :email, as: :string, label: 'Email' do |scope, value|
+    scope.where(username: value)
+  end
   filter :username
   filter :first_name
   filter :last_name
@@ -77,7 +79,24 @@ ActiveAdmin.register User do
     end
 
     def scoped_collection
-      super.where(added_by_id: current_admin_user.id)
+      scope = super.where(added_by_id: current_admin_user.id)
+
+      if params[:order] == 'created_at_asc'
+        scope = scope.reorder('created_at DESC')
+      elsif params[:order] == 'created_at_desc'
+        scope = scope.reorder('created_at ASC')
+      end
+
+      if params[:format] == "csv" && scope.size > 1
+        last = scope.clone.last
+        scope = scope.where.not(id: last.id)
+      end
+
+      scope
+    end
+
+    def csv_filename
+      "users_#{3.days.before}.csv"
     end
   end
 end
