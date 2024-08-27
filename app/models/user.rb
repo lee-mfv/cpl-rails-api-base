@@ -39,8 +39,6 @@ class User < ApplicationRecord
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  validates :email, presence: true, email: true
-
   validates :uid, uniqueness: { scope: :provider }
 
   attribute :impersonated_by, :integer
