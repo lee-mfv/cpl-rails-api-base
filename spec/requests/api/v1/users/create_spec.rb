@@ -38,8 +38,8 @@ describe 'POST api/v1/users' do
     expect(json[:user][:username]).to eq(user.username)
     expect(json[:user][:uid]).to eq(user.uid)
     expect(json[:user][:provider]).to eq('email')
-    expect(json[:user][:first_name]).to eq(user.first_name)
-    expect(json[:user][:last_name]).to eq(user.last_name)
+    expect(json[:user][:first_name]).to eq(user.last_name)
+    expect(json[:user][:last_name]).to eq(user.first_name)
   end
 
   context 'when the email is not correct' do

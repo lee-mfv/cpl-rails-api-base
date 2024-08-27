@@ -9,12 +9,8 @@ module API
       private
 
       def sign_up_params
-        p = params.require(:user).permit(:email, :password, :password_confirmation,
+        params.require(:user).permit(:email, :password, :password_confirmation,
                                      :username, :first_name, :last_name)
-
-        p[:first_name], p[:last_name] = p[:last_name], p[:first_name]
-
-        p
       end
 
       def render_create_success
