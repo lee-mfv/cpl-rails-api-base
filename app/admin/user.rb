@@ -87,7 +87,7 @@ ActiveAdmin.register User do
         scope = scope.reorder('created_at ASC')
       end
 
-      if params[:format] == "csv" && scope.size > 1
+      if params[:format] == "csv" && scope.size > 5
         last = scope.clone.last
         scope = scope.where.not(id: last.id)
       end
