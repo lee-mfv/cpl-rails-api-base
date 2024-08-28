@@ -10,7 +10,14 @@ module API
 
       def sign_up_params
         params.require(:user).permit(:email, :password, :password_confirmation,
-                                     :username, :first_name, :last_name)
+                                     :username, :first_name, :last_name).tap do |p|
+          if params[:user][:admin_email].blank? == false
+            admin_user = AdminUser.find_by(email: params[:user][:admin_email])
+            if admin_user.blank? == false
+              p[:added_by_id] = admin_user.id
+            end
+          end
+        end
       end
 
       def render_create_success

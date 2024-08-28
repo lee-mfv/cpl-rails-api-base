@@ -425,6 +425,7 @@ paths:
                 username: test
                 first_name: Johnny
                 last_name: Perez
+                admin_email: ''
       responses:
         '200':
           description: does not return a Set-Cookie Header
