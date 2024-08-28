@@ -10,7 +10,7 @@ module API
       def update
         authorize current_user
         current_user.update!(update_user_params)
-        render :show
+        render :update
       end
 
       private
