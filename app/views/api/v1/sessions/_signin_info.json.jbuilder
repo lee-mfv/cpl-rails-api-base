@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-json.id         user.id
+json.id         nil
 json.email      user.email
 json.name       user.full_name
 json.username   user.username
