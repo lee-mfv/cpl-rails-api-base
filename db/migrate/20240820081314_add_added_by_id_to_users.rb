@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# 
 class AddAddedByIdToUsers < ActiveRecord::Migration[7.1]
   def up
     add_column :users, :added_by_id, :bigint

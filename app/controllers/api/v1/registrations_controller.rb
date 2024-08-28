@@ -8,6 +8,7 @@ module API
 
       private
 
+      # rubocop:disable Metrics/AbcSize
       def sign_up_params
         params.require(:user).permit(:email, :password, :password_confirmation,
                                      :username, :first_name, :last_name).tap do |p|
@@ -17,6 +18,7 @@ module API
           end
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def render_create_success
         render :create
