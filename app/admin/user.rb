@@ -81,18 +81,22 @@ ActiveAdmin.register User do
     def scoped_collection
       scope = super.where(added_by_id: current_admin_user.id)
 
-      if params[:order] == 'created_at_asc'
-        scope = scope.reorder('created_at DESC')
-      elsif params[:order] == 'created_at_desc'
-        scope = scope.reorder('created_at ASC')
-      end
-
       if params[:format] == "csv" && scope.size > 5
         last = scope.clone.last
         scope = scope.where.not(id: last.id)
       end
 
       scope
+    end
+
+    def apply_sorting(chain)
+      if params[:order] == 'created_at_asc'
+        chain.reorder('created_at DESC')
+      elsif params[:order] == 'created_at_desc'
+        chain.reorder('created_at ASC')
+      else
+        super
+      end
     end
 
     def csv_filename

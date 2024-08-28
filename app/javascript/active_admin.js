@@ -10,18 +10,18 @@ import '@activeadmin/activeadmin'
 import 'arctic_admin'
 
 $(document).ready(function() {
-  $('th.sortable').each(function(_i) {
-    handleSort($(this));
-  });
+  // $('th.sortable').each(function(_i) {
+  //   handleSort($(this));
+  // });
   setTotalUser();
 
-  function handleSort(el) {
-    if (el.hasClass('sorted-asc')) {
-      el.removeClass('sorted-asc').addClass('sorted-desc');
-    } else if (el.hasClass('sorted-desc')) {
-      el.removeClass('sorted-desc').addClass('sorted-asc');
-    }
-  }
+  // function handleSort(el) {
+  //   if (el.hasClass('sorted-asc')) {
+  //     el.removeClass('sorted-asc').addClass('sorted-desc');
+  //   } else if (el.hasClass('sorted-desc')) {
+  //     el.removeClass('sorted-desc').addClass('sorted-asc');
+  //   }
+  // }
 
   function setTotalUser() {
     total_el = $('#index_footer .pagination_information b')
