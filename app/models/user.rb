@@ -49,6 +49,10 @@ class User < ApplicationRecord
                           last_sign_in_at current_sign_in_ip last_sign_in_ip provider uid
                           created_at updated_at].freeze
 
+  scope :find_username, lambda { |value|
+    where('email LIKE ?', "%#{value}%")
+  }
+
   def self.from_social_provider(provider, user_params)
     where(provider:, uid: user_params['id']).first_or_create! do |user|
       user.password = Devise.friendly_token[0, 20]

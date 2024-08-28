@@ -15,5 +15,9 @@ module Ransackable
 
       const_defined?(:RANSACK_ASSOCIATIONS) ? self::RANSACK_ASSOCIATIONS : []
     end
+
+    def ransackable_scopes(*)
+      %i(find_username)
+    end
   end
 end

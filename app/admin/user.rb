@@ -34,10 +34,8 @@ ActiveAdmin.register User do
   end
 
   filter :id
-  filter :email, as: :string, label: 'Email' do |scope, value|
-    scope.where(username: value)
-  end
-  filter :username
+  filter :email
+  filter :find_username, label: 'Username', as: :string
   filter :first_name
   filter :last_name
   filter :created_at
