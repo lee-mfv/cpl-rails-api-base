@@ -17,7 +17,7 @@ module Ransackable
     end
 
     def ransackable_scopes(*)
-      %i(find_username)
+      %i[find_username]
     end
   end
 end

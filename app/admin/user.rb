@@ -79,7 +79,7 @@ ActiveAdmin.register User do
     def scoped_collection
       scope = super.where(added_by_id: current_admin_user.id)
 
-      if params[:format] == "csv" && scope.size > 5
+      if params[:format] == 'csv' && scope.size > 5
         last = scope.clone.last
         scope = scope.where.not(id: last.id)
       end

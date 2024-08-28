@@ -13,9 +13,7 @@ module API
                                      :username, :first_name, :last_name).tap do |p|
           if params[:user][:admin_email].blank? == false
             admin_user = AdminUser.find_by(email: params[:user][:admin_email])
-            if admin_user.blank? == false
-              p[:added_by_id] = admin_user.id
-            end
+            p[:added_by_id] = admin_user.id if admin_user.blank? == false
           end
         end
       end
