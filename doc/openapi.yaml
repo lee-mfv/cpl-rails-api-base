@@ -610,3 +610,69 @@ paths:
               user:
                 email: jefferson@rau-bogisich.test
                 password: password
+  "/api/v1/users/sign_out":
+    delete:
+      summary: destroy
+      tags:
+        - API::V1::Session
+      parameters:
+        - name: access-token
+          in: header
+          required: true
+          schema:
+            type: string
+          example: Um7vvVEW5IOGabZeQTPolg
+        - name: client
+          in: header
+          required: true
+          schema:
+            type: string
+          example: V9gL-FxS9IQMWApeZmFQeA
+        - name: uid
+          in: header
+          required: true
+          schema:
+            type: string
+          example: jeremiah.mitchell@grady.example
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            example: {}
+      responses:
+        '200':
+          description: returns a successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                  - success
+              example:
+                success: true
+        '404':
+          description: returns not found response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                      required:
+                        - message
+                required:
+                  - errors
+              example:
+                errors:
+                  - message: User was not found or was not logged in.
